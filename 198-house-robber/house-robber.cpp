@@ -1,20 +1,22 @@
 class Solution {
 public:
+    int n;
     int t[105];
-    int solve(int idx,vector<int>& nums,int&n){
-        if(idx>=n){
+    int solve(int i, vector<int>& nums) {
+        if (i >= nums.size()) {
             return 0;
         }
-        if(t[idx]!=-1){
-            return t[idx];
+        if(t[i]!=-1){
+            return t[i];
         }
-        int take=nums[idx]+solve(idx+2,nums,n);
-        int not_take=solve(idx+1,nums,n);
-        return t[idx]=max(take,not_take);
+        int robbed = nums[i] + solve(i + 2, nums);
+
+        int not_robbed = solve(i + 1, nums);
+        return t[i]=max(robbed, not_robbed);
     }
     int rob(vector<int>& nums) {
-      int n=nums.size();
-      memset(t,-1,sizeof(t));
-      return solve(0,nums,n);  
+        n = nums.size();
+        memset(t,-1,sizeof(t));
+        return solve(0, nums);
     }
 };
