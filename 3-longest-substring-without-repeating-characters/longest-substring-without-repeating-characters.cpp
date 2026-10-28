@@ -7,12 +7,14 @@ public:
         int max_len = 0;
         vector<int> hash_map(128, 0);
         while (j < n) {
-            if (hash_map[s[j]] == 0) {
+            while (j < n && hash_map[s[j]] == 0) {
                 hash_map[s[j]]++;
                 int len = j - i + 1;
                 max_len = max(max_len, len);
                 j++;
-            } else {
+            }
+
+            if (j < n && hash_map[s[j]] != 0) {
                 hash_map[s[i]]--;
                 i++;
             }
