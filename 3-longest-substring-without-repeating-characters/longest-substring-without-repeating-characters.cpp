@@ -15,8 +15,10 @@ public:
             }
 
             if (j < n && hash_map[s[j]] != 0) {
-                hash_map[s[i]]--;
-                i++;
+                while (hash_map[s[j]] != 0) {
+                    hash_map[s[i]]--;
+                    i++;
+                }
             }
         }
         return max_len;
